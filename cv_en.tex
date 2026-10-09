@@ -1,0 +1,140 @@
+% Before editing:
+% - Write down the target profession, level, and the problems the role solves.
+% - Read the job description in three passes: essential requirements,
+%   repeated responsibilities/tools/outcomes, preferences vs requirements.
+% - Keep only claims supported by your work history, education or verified
+%   training. A visible gap is safer than a false claim.
+% - Tailor by choosing and ordering true evidence. Never change dates,
+%   titles, employers, metrics, or scope.
+% - AI may compare and rephrase, but must preserve every fact, number, title,
+%   date, technology, and scope. Do not paste private employer data into it.
+%
+% Final review (make check):
+% 1. Facts: every date, title, employer, degree, metric, link, technology.
+% 2. Relevance: drop bullets that do not help this hiring decision.
+% 3. Language: read aloud, cut filler and unexplained acronyms; present tense
+%    for current work, past tense for completed work.
+% 4. File: one or two pages, text extracts in order, every link opens,
+%    no placeholders left.
+
+\DocumentMetadata{lang=en,pdfversion=2.0,tagging=on}
+\documentclass[10pt,a4paper]{article}
+\usepackage[english]{babel}
+\usepackage{cv}
+
+\begin{document}
+
+\cvheader{Rodion Myshalov}{SENIOR BACKEND ENGINEER}{Bangkok, Thailand}{%
+  \href{mailto:rodionmyshalov@gmail.com}{rodionmyshalov@gmail.com}\cvsep
+  \href{tel:+66982458188}{+66 98 245 8188}\cvsep
+  \cvlink{https://www.linkedin.com/in/myshalove}{linkedin.com/in/myshalove}\cvsep
+  \cvlink{https://github.com/myshalove}{github.com/myshalove}}
+
+\section*{Summary}
+% 3-4 lines: profession and level, defensible years of experience, one or two
+% strengths, a result or scope that distinguishes you. No objectives, no soft
+% skills, no "results-oriented visionary".
+Senior Backend Engineer with \textbf{7+ years} of software engineering experience focused on backend systems, Go, databases, asynchronous processing, APIs and distributed systems. Designed systems from scratch, made architectural decisions, owned production services, and defined engineering standards.
+
+\section*{Skills}
+% 6-12 role-relevant terms you can discuss in an interview and that are backed
+% by the experience below. No ratings, no generic traits.
+\cvskillwidest{Message Brokers}
+\cvskill{Languages}{Go, PHP (Symfony), SQL}
+\cvskill{APIs}{REST/OpenAPI, gRPC/Protobuf, GraphQL, OAuth/JWT, Webhooks}
+\cvskill{Databases}{PostgreSQL, MySQL, Redis}
+\cvskill{Message Brokers}{Apache Kafka, RabbitMQ}
+\cvskill{Infrastructure}{AWS, Docker, Kubernetes, Helm, HashiCorp Vault, Nginx / Angie}
+\cvskill{CI/CD}{GitLab CI, GitHub Actions}
+\cvskill{Observability}{Prometheus, Grafana, OpenTelemetry, Sentry, ELK (Kibana)}
+\cvskill{Architecture}{Clean Architecture, DDD, TDD}
+\cvskill{AI Workflows}{Claude Code, Cursor, Codex}
+
+\section*{Experience}
+% Reverse chronology. Each role: organization, official title, location or
+% Remote, month and year range, a context line for unfamiliar organizations,
+% two to six bullets ordered by relevance and strength.
+%
+% Bullet = strong verb + the work + verified result, scale, or constraint.
+% Use "Contributed to" when responsibility was shared.
+% Strong verbs: Architected, Automated, Built, Cut, Debugged, Deployed,
+% Designed, Eliminated, Engineered, Improved, Introduced, Launched, Led,
+% Mentored, Migrated, Overhauled, Reduced, Redesigned, Resolved, Standardized,
+% Streamlined, Unified.
+
+\cventry{International B2C online platform}{Sep 2023 -- Present}{Senior Go Engineer}{Remote}
+\cvcontext{Confidential (NDA).}
+\begin{itemize}
+  \item Authored and launched to production a standalone Go service extracted from the legacy monolith. Backed by a Redis cache, the service handles about 5,000 RPS from the frontend via REST and about 15,000 RPS from external services via gRPC. Migrated about 430,000 interlinked records (about 99\% automatically) and reached 40\% test coverage across the service with CI integration.
+  \item Built 5 shared Go packages (common data import, external-service authorization via OAuth/JWT, client contract builds, service bootstrap, user-action confirmation) used across 5 services, cutting typical cross-service tasks from several days to a couple of hours.
+  \item Reviewed code, mentored developers from other projects, and promptly fixed critical production bugs.
+  \item Designed a confirmation flow for write actions by a restricted group of users. Each action is confirmed with a code or approved by the responsible team via webhook, with no extra steps when approval is not required.
+  \item Integrated Postman test execution into the CI pipeline, simplifying QA work. Wrote a response-schema parser for client contracts that handles nested schema trees.
+  \item Contributed to the Kubernetes rollout (Helm, HashiCorp Vault, Prometheus, OpenTelemetry) and test environments that switch integrations between mocks and real services via GitLab CI/CD.
+\end{itemize}
+
+\cventry{SOHO.LMS}{Aug 2022 -- Sep 2023}{Middle Go Developer}{Remote}
+\cvcontext{Online education platform.}
+\begin{itemize}
+  \item Built a Kafka-based execution pipeline for workflow trees. Admins define the action catalog (email or SMS after payment, course enrollment, demo access until a deadline, enrollment on the deadline date), and schools assemble trees in their account. Automated work previously done by staff, cutting setup of one flow from hours to minutes.
+  \item Reduced API response time of the mobile app's student service by 30\% by replacing heavy REST calls with GraphQL fragments, which fetch only the fields each screen needs, and adding PostgreSQL indexes (e.g., GIN for JSONB-based filtering).
+  \item Developed a gamification system with achievements and points that users can spend instead of money.
+\end{itemize}
+
+\newpage
+\cventry{Taptima}{Sep 2019 -- Aug 2022}{Back End Developer}{Remote}
+\cvcontext{Outsourcing studio building systems for entertainment and media clients.}
+\begin{itemize}
+  \item Architected a RabbitMQ-based pipeline for the Gorky Theater website, which sold its own tickets and aggregated citywide event listings. Imported about 1,000 new, repeated and updated event records a day, with about 20,000 available seats, from an external ticketing system into MySQL and served the schedule via GraphQL instead of live external calls. Cut schedule API response time by 70\% and sustained 10,000 RPS at the summer peak, including traffic from third-party aggregators scraping the site.
+  \item Led a cross-functional team of 4 (2 backend, 2 frontend) building self-service ticket kiosks for Illuzion Cinema. Integrated bank payment terminals and ticket printers with failure handling and payment reconciliation. Kiosks handled about 40\% of on-site sales, reducing cashier workload.
+  \item Set up Sentry and Grafana monitoring across 4 kiosks to detect errors and freezes remotely, without server log digging or CCTV checks.
+  \item Migrated a legacy WordPress portal to Symfony 6 for HTReviews, redesigning a single-table database into a normalized schema. Transferred 10,000+ records and cleaned up about 2\% duplicated or corrupted entries.
+  \item Contributed to containerizing services with Docker, cutting deployment time from about 7 min to under 1 min.
+\end{itemize}
+
+% Several roles at one organization: show each title with its dates.
+% \cventry{Organization}{Month 20XX -- Month 20XX}{}{City, Country}
+% \cvrole{Senior Role}{Month 20XX -- Month 20XX}
+% \begin{itemize}
+%   \item Bullet.
+% \end{itemize}
+% \cvrole{Role}{Month 20XX -- Month 20XX}
+% \begin{itemize}
+%   \item Bullet.
+% \end{itemize}
+
+% Contract role: label it as a contract.
+% \cventry{Client or Self-employed}{Month 20XX -- Month 20XX}{Role (Contract)}{Remote}
+
+% Career break: optional, no medical or family details required.
+% \cventry{Career break}{Month 20XX -- Month 20XX}{Study, caregiving, relocation}{}
+
+\section*{Side Projects}
+\cventry{ReadBeat}{Jun 2026 -- Present}{Tech Lead}{Remote}
+\cvcontext{In development. Media portal for the beatbox community with event listings and news.}
+\begin{itemize}
+  \item Architected the Go backend from scratch on Clean Architecture, with layer dependency rules enforced in CI by arch-go. The stack includes a GraphQL API (gqlgen), REST image uploads documented with OpenAPI, PostgreSQL (pgx), and a Redis read cache for events and news, reset per section on any admin change.
+  \item Set up CI/CD on GitHub Actions with a generated-code drift check, golangci-lint, arch-go and Go tests under the race detector, including integration tests against real PostgreSQL and Redis. Deployed distroless Docker images behind Nginx over SSH.
+  \item Defined the engineering process for the monorepo (Go backend, React/TypeScript frontend, admin panel), including pull requests with code review, commit conventions and documentation on architecture, APIs and features.
+\end{itemize}
+
+\section*{Education}
+% Qualification, institution, location, completion year. Add the expected date
+% for a program in progress; "Coursework toward ..." if not completed.
+% GPA only when strong and recent, with scale (3.8/4.0).
+\cventry{Bachelor's degree, Mathematics and Computer Science}{2018 -- 2022}{Far Eastern Federal University}{Vladivostok}
+
+% \section*{Certifications}
+% Two or three relevant ones: official name, issuer, issue/expiry date, ID or
+% link. Write "Completed course" when no assessed credential was awarded.
+% \textbf{Credential Name}, Issuing Organization, Month 20XX\hfill ID: XXXX
+
+\section*{Languages}
+% CEFR (A1-C2) or native / professional working proficiency. Do not overstate.
+English (B2)\cvsep Russian (Native)
+
+% \section*{Interests}
+% Optional and short: only concrete, substantial achievements.
+% Completed X and organized Y for N people.
+
+\end{document}
