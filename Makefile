@@ -1,8 +1,8 @@
-PDFS = cv_en.pdf cv_ru.pdf
+PDFS = pdf/cv_en.pdf pdf/cv_ru.pdf
 PLACEHOLDERS = 20XX|example\.test|Candidate Name|Имя Фамилия|github\.com/username
 
 all:
-	latexmk -lualatex cv_en.tex cv_ru.tex
+	latexmk -lualatex -outdir=pdf -auxdir=build cv_en.tex cv_ru.tex
 
 check: all
 	@for f in $(PDFS); do \
@@ -14,6 +14,6 @@ check: all
 	done
 
 clean:
-	latexmk -c
+	latexmk -c -outdir=pdf -auxdir=build cv_en.tex cv_ru.tex
 
 .PHONY: all check clean
