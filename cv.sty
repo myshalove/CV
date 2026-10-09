@@ -1,0 +1,84 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cv}
+
+% One typeface (Helvetica, regular and bold) with Latin and Cyrillic glyphs.
+% Requires LuaLaTeX; fontspec embeds Unicode mappings, so text stays selectable.
+\RequirePackage{fontspec}
+\setmainfont{Helvetica}[
+  Path           = fonts/helvetica/,
+  Extension      = .ttf,
+  UprightFont    = *,
+  BoldFont       = *-Bold,
+]
+\RequirePackage{microtype}
+
+% One restrained accent; stays readable in black-and-white print
+\RequirePackage{xcolor}
+\definecolor{accent}{HTML}{1F3A5F}
+\definecolor{muted}{HTML}{666666}
+
+% Single column, no headers or footers
+\RequirePackage[a4paper,margin=0.65in]{geometry}
+\RequirePackage[nobottomtitles*]{titlesec}
+\RequirePackage[hidelinks]{hyperref}
+
+\pagestyle{empty}
+\linespread{1.08}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1pt}
+\setlength{\emergencystretch}{1em}
+
+% Compact bullets. Tagged PDF (\DocumentMetadata) replaces the list code, so
+% spacing is set on its instances instead of enumitem.
+\EditInstance{block}{listblock-1}{
+  begin-vspace = 2pt, begin-extra-vspace = 0pt, para-vspace = 0pt,
+  item-vspace = 1pt, left-margin = 1.1em,
+}
+\EditInstance{list}{itemize-1}{
+  item-label = {\textcolor{accent}{\textbullet}},
+  item-vspace = 1pt, label-sep = 0.5em, label-width = 0.6em,
+}
+
+\newcommand{\cvspaced}[1]{{\addfontfeatures{LetterSpace=6}#1}}
+\newcommand{\cvsectiontitle}[1]{\cvspaced{\MakeUppercase{#1}}}
+
+\titleformat{\section}{\color{accent}\bfseries}{}{0pt}
+  {\cvsectiontitle}[{\color{muted}\vspace{1pt}\titlerule[0.4pt]}]
+\titlespacing*{\section}{0pt}{10pt}{5pt}
+
+% \cvheader{Name}{Profession and level}{City, Country}{Contacts}
+\newcommand{\cvheader}[4]{%
+  \hypersetup{pdfauthor={#1},pdftitle={#1 --- #2}}%
+  {\color{accent}\fontsize{24}{28}\selectfont\bfseries #1}\par\vspace{2pt}
+  {\color{accent}\large\cvspaced{#2}}\par\vspace{1pt}
+  {\color{muted}#3}\par\vspace{4pt}
+  #4\par\vspace{2pt}
+}
+
+% Separator between contacts
+\newcommand{\cvsep}{\hspace{0.6em}\textcolor{muted}{|}\hspace{0.6em}}
+
+% \cvlink{URL}{Visible address} -- profile link
+\newcommand{\cvlink}[2]{\href{#1}{\textcolor{accent}{\bfseries #2}}}
+
+% \cventry{Organization}{Dates}{Title}{Location}
+\newcommand{\cventry}[4]{%
+  \textbf{#1}\hfill\textcolor{muted}{#2}\\
+  \textcolor{accent}{#3}\hfill\textcolor{muted}{#4}\par
+}
+
+% \cvcontext{One factual line about the organization}
+\newcommand{\cvcontext}[1]{{\small\color{muted}#1}\par}
+
+% \cvrole{Title}{Dates} -- another role at the same organization
+\newcommand{\cvrole}[2]{\textcolor{accent}{#1}\hfill\textcolor{muted}{#2}\par}
+
+% \cvskill{Group}{Comma-separated skills}; labels share the width set by
+% \cvskillwidest{longest group name}
+\newlength{\cvskillwidth}
+\setlength{\cvskillwidth}{8em}
+\newcommand{\cvskillwidest}[1]{\settowidth{\cvskillwidth}{\bfseries #1\quad}}
+\newcommand{\cvskill}[2]{%
+  {\raggedright\hangindent=\cvskillwidth\hangafter=1
+   \makebox[\cvskillwidth][l]{\bfseries #1}#2\par}%
+}

@@ -1,0 +1,143 @@
+% Before editing:
+% - Write down the target profession, level, and the problems the role solves.
+% - Read the job description in three passes: essential requirements,
+%   repeated responsibilities/tools/outcomes, preferences vs requirements.
+% - Keep only claims supported by your work history, education or verified
+%   training. A visible gap is safer than a false claim.
+% - Tailor by choosing and ordering true evidence. Never change dates,
+%   titles, employers, metrics, or scope.
+% - AI may compare and rephrase, but must preserve every fact, number, title,
+%   date, technology, and scope. Do not paste private employer data into it.
+%
+% Final review (make check):
+% 1. Facts: every date, title, employer, degree, metric, link, technology.
+% 2. Relevance: drop bullets that do not help this hiring decision.
+% 3. Language: read aloud, cut filler and unexplained acronyms; present tense
+%    for current work, past tense for completed work.
+% 4. File: one or two pages, text extracts in order, every link opens,
+%    no placeholders left.
+
+\DocumentMetadata{lang=en,pdfversion=2.0,tagging=on}
+\documentclass[10pt,a4paper]{article}
+\usepackage[english]{babel}
+\usepackage{cv}
+
+\begin{document}
+
+\cvheader{Rodion Myshalov}{SENIOR BACKEND ENGINEER}{Bangkok, Thailand}{%
+  \href{mailto:rodionmyshalov@gmail.com}{rodionmyshalov@gmail.com}\cvsep
+  \href{tel:+66982458188}{+66 98 245 8188}\cvsep
+  \cvlink{https://www.linkedin.com/in/myshalove}{linkedin.com/in/myshalove}\cvsep
+  \cvlink{https://github.com/myshalove}{github.com/myshalove}}
+
+\section*{Professional Summary}
+% 3-4 lines: profession and level, defensible years of experience, one or two
+% strengths, a result or scope that distinguishes you. No objectives, no soft
+% skills, no "results-oriented visionary".
+Backend engineer with X years of experience in domain. Built system and achieved verified result or scale. Strong in technology, technology, and practice.
+
+\section*{Technical Skills}
+% 6-12 role-relevant terms you can discuss in an interview and that are backed
+% by the experience below. No ratings, no generic traits.
+\cvskillwidest{Message Brokers}
+\cvskill{Languages}{Go, SQL}
+\cvskill{APIs}{REST + OpenAPI/Swagger, gRPC + Protobuf, OAuth + JWT, GraphQL, Webhooks}
+\cvskill{Databases}{PostgreSQL, MySQL, MongoDB, Redis}
+\cvskill{Message Brokers}{Apache Kafka, RabbitMQ}
+\cvskill{Infrastructure}{Docker, Kubernetes (K8s), Helm, Nginx / Angie, HashiCorp Vault}
+\cvskill{CI/CD}{GitLab CI, GitHub Actions}
+\cvskill{Monitoring}{Prometheus, Grafana, Sentry, ELK (Kibana)}
+\cvskill{Architecture}{Monolith, Microservices}
+\cvskill{Design}{TDD, DDD, Clean Architecture}
+\cvskill{Testing}{Unit, Integration, Race detection}
+
+\section*{Work Experience}
+% Reverse chronology. Each role: organization, official title, location or
+% Remote, month and year range, a context line for unfamiliar organizations,
+% two to six bullets ordered by relevance and strength.
+%
+% Bullet = strong verb + the work + verified result, scale, or constraint.
+% Use "Contributed to" when responsibility was shared.
+% Strong verbs: Architected, Automated, Built, Cut, Debugged, Deployed,
+% Designed, Eliminated, Engineered, Improved, Introduced, Launched, Led,
+% Mentored, Migrated, Overhauled, Reduced, Redesigned, Resolved, Standardized,
+% Streamlined, Unified.
+
+\cventry{SOHO.LMS}{Sep 2023 -- Present}{Senior Go Engineer}{Valencia, Spain (Remote)}
+\cvcontext{Online education platform}
+\begin{itemize}
+  \item Develop the Go scheduling and live-lesson service: recurring classes, teacher availability, rescheduling and video lesson launch. Cut calendar p95 load time from 1.2 s to 120 ms (−90\%); the service handles up to 3,000 RPS when classes start.
+  \item Built the payment flow on Stripe and acquiring webhooks: automatic course access after payment, subscriptions and debt tracking. Access is granted in 10 seconds instead of 2--4 hours of manual checks; paid orders without access dropped from 2.5\% to 0.1\%.
+  \item Developed a Kafka-based notification service with retries and deduplication across Telegram, WhatsApp, SMS, email and mobile push. Delivers up to 2M messages a day, cut undelivered messages from 6\% to 0.5\%, and reminders raised lesson attendance by 15\%.
+\end{itemize}
+
+\cventry{Taptima}{Dec 2020 -- Sep 2023}{Middle+ Go Developer}{Limassol, Cyprus (On-site and Remote)}
+\cvcontext{Outsourced development: web services, mobile apps and e-commerce.}
+\begin{itemize}
+  \item Migrated a cinema chain's monolithic backend to microservices and built a Go background sync service that pulls 500+ films and 12,000+ showtimes separately from an external system, links them and caches them in PostgreSQL. Showtime listing p95 fell from 900 to 70 ms (−92\%), the service handles up to 4,000 RPS on premiere days, and chat alerts cut sync-failure detection time from several hours to 2 minutes.
+  \item Redesigned ticket payments from synchronous REST to asynchronous processing via a task queue and bank webhooks for successful and failed payments: checkout p95 dropped from 3.5 s to 220 ms (−94\%), charges without an issued ticket fell from 1.8\% to 0.1\%, and payment support tickets fell by 70\%; up to 1,200 orders per minute at peak.
+  \item Extracted authentication into a standalone service that issues JWTs independently of the rest of the backend: one-time codes via SMS and email, OAuth 2.0 via Google, Facebook and Telegram. Handles up to 2,000 login RPS at ticket-sale openings with 90 ms p99, reduced main backend load by 35\%, and cut peak login errors from 4\% to 0.2\%.
+\end{itemize}
+
+\cventry{DNS}{Oct 2019 -- Dec 2020}{Junior Go Developer}{Vladivostok, Russia (On-site)}
+\cvcontext{Online consumer electronics retailer.}
+\begin{itemize}
+  \item Built a Go order assembly service (gRPC, PostgreSQL, Kafka) for the PC configurator: it aggregates components, generates the invoice and hands the order to checkout; handles up to 1,200 RPS at sale peaks with 180 ms p99.
+  \item Cut invoice generation p95 from 420 to 150 ms (−64\%) by replacing sequential calls to pricing, stock and compatibility services with parallel errgroup calls backed by a Redis cache.
+  \item Reduced lost and duplicated orders on handoff to checkout from 0.8\% to 0.05\% by introducing a transactional outbox, idempotency keys and retries with backoff.
+\end{itemize}
+
+% Several roles at one organization: show each title with its dates.
+% \cventry{Organization}{Month 20XX -- Month 20XX}{}{City, Country}
+% \cvrole{Senior Role}{Month 20XX -- Month 20XX}
+% \begin{itemize}
+%   \item Bullet.
+% \end{itemize}
+% \cvrole{Role}{Month 20XX -- Month 20XX}
+% \begin{itemize}
+%   \item Bullet.
+% \end{itemize}
+
+% Contract role: label it as a contract.
+% \cventry{Client or Self-employed}{Month 20XX -- Month 20XX}{Role (Contract)}{Remote}
+
+% Career break: optional, no medical or family details required.
+% \cventry{Career break}{Month 20XX -- Month 20XX}{Study, caregiving, relocation}{}
+
+\section*{Side Projects}
+\cventry{ReadBeat}{Jun 2026 -- Present}{CTO}{Remote}
+\cvcontext{Media portal for the beatbox community: event listings for battles, festivals and jams.}
+\begin{itemize}
+  \item Architected the Go backend: GraphQL API (gqlgen), REST image uploads documented with OpenAPI, PostgreSQL (pgx, golang-migrate) and Redis-backed admin sessions.
+  \item Enforced Clean Architecture layering with arch-go and golangci-lint (gosec, revive) as CI gates.
+  \item Built the GitHub Actions pipeline: codegen drift check, race-detector integration tests against PostgreSQL and Redis, SSH deploy of distroless Docker images behind Nginx.
+\end{itemize}
+
+\cventry{Big Dope Label}{Mar 2026 -- Present}{CTO}{Remote}
+\cvcontext{First beatbox label in Russia --- \href{https://bigdope.pro}{bigdope.pro}.}
+\begin{itemize}
+  \item Set up production hosting: Dockerized Nginx with Let's Encrypt TLS and automated certificate renewal.
+  \item Built traffic analytics and log management as separate containers: GoAccess, logrotate and a password-protected log viewer.
+  \item Automated CI/CD on GitHub Actions: lint and tests on every push, SSH deploy with Docker Compose.
+\end{itemize}
+
+\section*{Education}
+% Qualification, institution, location, completion year. Add the expected date
+% for a program in progress; "Coursework toward ..." if not completed.
+% GPA only when strong and recent, with scale (3.8/4.0).
+\cventry{Bachelor's degree, Mathematics and Computer Science}{2022}{Far Eastern Federal University}{Vladivostok, Russia}
+
+% \section*{Certifications}
+% Two or three relevant ones: official name, issuer, issue/expiry date, ID or
+% link. Write "Completed course" when no assessed credential was awarded.
+% \textbf{Credential Name}, Issuing Organization, Month 20XX\hfill ID: XXXX
+
+\section*{Languages}
+% CEFR (A1-C2) or native / professional working proficiency. Do not overstate.
+English (B2)\cvsep Russian (Native)
+
+% \section*{Interests}
+% Optional and short: only concrete, substantial achievements.
+% Completed X and organized Y for N people.
+
+\end{document}
